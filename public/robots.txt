@@ -16,4 +16,4 @@ User-agent: Google-Extended
 Allow: /
 Disallow: /api/
 
-Sitemap: https://christendijoux.com/sitemap.xml
+Sitemap: https://virang.vercel.app/sitemap.xml

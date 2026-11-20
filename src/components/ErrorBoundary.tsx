@@ -28,19 +28,20 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="flex min-h-screen items-center justify-center bg-ink p-4 text-paper">
-          <div className="w-full max-w-lg border border-line p-8 text-center">
-            <h2 className="display mb-4 text-5xl">Oups ! Quelque chose s'est mal passé</h2>
-            <p className="mb-6 text-paper/70">
-              Une erreur inattendue s'est produite. Nous nous excusons pour la gêne occasionnée.
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-solid"
-            >
-              Rafraîchir la page
-            </button>
-          </div>
-        </div>
+  <div className="w-full max-w-lg border border-line p-8 text-center">
+    <h2 className="display mb-4 text-5xl">Oops! Something went wrong</h2>
+    <p className="mb-6 text-paper/70">
+      An unexpected error occurred. We apologize for the inconvenience.
+    </p>
+    <button
+      onClick={() => window.location.reload()}
+      className="btn-solid"
+    >
+      Refresh page
+    </button>
+  </div>
+</div>
+
       );
     }
 

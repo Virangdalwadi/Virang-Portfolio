@@ -40,7 +40,7 @@ const INTENTS: Record<IntentKey, string[]> = {
   thanks: ['merci', 'thanks', 'thank you', 'thx', 'super', 'parfait', 'great', 'cool'],
   goodbye: ['au revoir', 'bye', 'ciao', 'a plus', 'a bientot', 'see you', 'bonne journee', 'bonne soiree'],
   bot: ['tu es un bot', 'es tu un robot', 'es tu une ia', 'are you a bot', 'are you ai', 'qui es tu', 'who are you', 'chatgpt', 'robot'],
-  about: ['qui est', 'presente*', 'a propos', 'about', 'profil', 'profile', 'parle moi de', 'tell me about', 'qui est christen', 'christen', 'dijoux', 'resume toi'],
+  about: ['qui est', 'presente*', 'a propos', 'about', 'profil', 'profile', 'parle moi de', 'tell me about', 'qui est virang', 'virang', 'dalwadi', 'resume toi'],
   job: ['travail*', 'poste', 'metier', 'job', 'role', 'emploi', 'actuellement', 'gagnon', 'work*', 'position', 'current*', 'fait quoi', 'what does'],
   experience: ['experience*', 'carriere', 'career', 'parcours', 'background', 'employeur*', 'emplois', 'previous'],
   education: ['formation*', 'etude*', 'diplome*', 'ecole', 'cegep', 'education', 'school', 'degree', 'study', 'studied', 'certificat*'],
@@ -189,7 +189,7 @@ const intentReply = (intent: IntentKey, k: Knowledge, lang: Lang, ctx: BotContex
       return { text: fr ? 'Avec plaisir ! Autre chose ?' : 'My pleasure! Anything else?', suggestions: defaultSuggestions(lang) };
     case 'goodbye':
       return {
-        text: fr ? 'À bientôt ! Et si vous avez un projet en tête, Christen répond vite.' : 'See you soon! And if you have a project in mind, Christen replies fast.',
+        text: fr ? `À bientôt ! Et si vous avez un projet en tête, ${k.name} répond vite.` : `See you soon! And if you have a project in mind, ${k.name} replies fast.`,
         actions: contactActions(k, lang).slice(0, 1),
       };
     case 'bot':
@@ -373,7 +373,7 @@ const answer = (message: string, lang: Lang, ctx: BotContext = {}): { reply: Bot
       return { reply: { text: fr ? `Les liens pour ${last.name} :` : `Links for ${last.name}:`, actions }, context: ctx };
     }
   }
-  const aboutPerson = ['sa', 'ses', 'son', 'his', 'christen'].some((w) => has(msg, w));
+  const aboutPerson = ['sa', 'ses', 'son', 'his', ...k.name.toLowerCase().split(/\s+/)].some((w) => has(msg, w));
   if (last && intent === 'skills' && !aboutPerson && FOLLOW_UPS.stack.some((kw) => has(msg, kw)) && msg.trim().split(' ').length <= 4) {
     return { reply: intentReply('skills', k, lang, { ...ctx, lastIntent: 'project' }), context: ctx };
   }
@@ -399,10 +399,13 @@ const answer = (message: string, lang: Lang, ctx: BotContext = {}): { reply: Bot
   return { reply: fallback(lang), context: ctx };
 };
 
-export const welcome = (lang: Lang): BotReply => ({
-  text:
-    lang === 'fr'
-      ? "Bonjour ! Je suis l'assistant de Christen. Posez-moi une question sur ses projets, sa stack ou sa disponibilité."
-      : "Hi! I'm Christen's assistant. Ask me about his projects, stack or availability.",
-  suggestions: defaultSuggestions(lang),
-});
+export const welcome = (lang: Lang): BotReply => {
+  const name = getKnowledge(lang).name;
+  return {
+    text:
+      lang === 'fr'
+        ? `Bonjour ! Je suis l'assistant de ${name}. Posez-moi une question sur ses projets, sa stack ou sa disponibilité.`
+        : `Hi! I'm ${name}'s assistant. Ask me about his projects, stack or availability.`,
+    suggestions: defaultSuggestions(lang),
+  };
+};

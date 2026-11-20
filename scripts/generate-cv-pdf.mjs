@@ -19,7 +19,7 @@ const chrome = [
 if (!chrome) throw new Error('Chrome introuvable : définir CHROME_PATH');
 
 for (const lang of ['fr', 'en']) {
-  const out = path.join(ROOT, `public/assets/cv-christen-dijoux-${lang}.pdf`);
+  const out = path.join(ROOT, `public/assets/virang-dalwadi-cv-${lang}.pdf`);
   execFileSync(chrome, [
     '--headless=new',
     `--user-data-dir=${mkdtempSync(path.join(tmpdir(), 'cv-pdf-'))}`,

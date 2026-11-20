@@ -7,8 +7,8 @@ export default function LegalNoticePage() {
   const { t } = useTranslation();
   return (
     <>
-      <Seo path="/legal-notice" title={`${t('legal.title')} | Christen Dijoux`} description={t('legal.metaDescription')} />
-      <LegalLayout doc={legal} other={{ to: '/privacy-policy', label: { fr: 'Politique de confidentialité', en: 'Privacy policy' } }} />
+      <Seo path="/legal-notice" title={`${t('legal.title')} | Virang Dalwadi`} description={t('legal.metaDescription')} />
+      <LegalLayout doc={legal} other={{ to: '/privacy-policy', label: 'Privacy policy' }} />
     </>
   );
 }

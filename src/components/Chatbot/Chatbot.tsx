@@ -23,7 +23,7 @@ interface Message {
   time: string;
 }
 
-const STORAGE_KEY = 'cd-chat-v2';
+const STORAGE_KEY = 'cd-chat-v3-en';
 const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 let uid = 0;
 
@@ -105,12 +105,11 @@ const ActionButton: React.FC<{ action: BotAction; onNavigate: () => void }> = ({
 };
 
 /**
- * Assistant du portfolio : réponses locales (aucune donnée envoyée à un service externe),
- * bilingue, avec actions et suggestions contextuelles.
+ * Local portfolio assistant with contextual actions and suggestions.
  */
 export const Chatbot: React.FC<ChatbotProps> = ({ botName = 'Assistant', welcomeMessage, position = 'bottom-right' }) => {
-  const { t, i18n } = useTranslation();
-  const lang: Lang = i18n?.language?.startsWith('en') ? 'en' : 'fr';
+  const { t } = useTranslation();
+  const lang: Lang = 'en';
 
   const makeWelcome = (): Message => {
     const w = welcome(lang);
@@ -234,7 +233,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ botName = 'Assistant', welcome
           id: ++uid,
           isBot: true,
           time: now(),
-          text: lang === 'fr' ? "Désolé, je n'ai pas pu traiter votre message. Réessayez." : "Sorry, I couldn't process that. Please try again.",
+          text: "Sorry, I couldn't process that. Please try again.",
         },
       ]);
     } finally {
@@ -392,14 +391,14 @@ export const Chatbot: React.FC<ChatbotProps> = ({ botName = 'Assistant', welcome
                       </div>
                     ) : (
                       <div key={m.id} className="flex flex-col items-end">
-                        <p className="label mb-1.5 text-[10px]">{lang === 'fr' ? 'Vous' : 'You'} — {m.time}</p>
+                        <p className="label mb-1.5 text-[10px]">You — {m.time}</p>
                         <p className="max-w-[85%] whitespace-pre-line bg-paper px-3 py-2 text-[14px] leading-relaxed text-ink">{m.text}</p>
                       </div>
                     )
                   )}
                   {isTyping && (
                     <p className="label flex items-center gap-1" aria-label={t('chatbot.typing', { defaultValue: 'En train d’écrire…' })}>
-                      <span className="text-paper/55">{'>'}</span> {lang === 'fr' ? 'analyse' : 'thinking'}
+                      <span className="text-paper/55">{'>'}</span> thinking
                       <span className="animate-blink text-paper">_</span>
                     </p>
                   )}

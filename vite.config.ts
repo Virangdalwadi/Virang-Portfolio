@@ -33,9 +33,9 @@ export default defineConfig(({ command }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['assets/favicon.ico', 'assets/favicon.svg'],
       manifest: {
-        name: 'Christen Dijoux',
-        short_name: 'Christen Dijoux',
-        description: 'Portfolio interactif de Christen Dijoux - Développeur Full-stack',
+        name: 'Virang Dalwadi | MERN Stack Developer',
+        short_name: 'Virang Dalwadi',
+        description: 'Portfolio of Virang Dalwadi, a MERN Stack Developer based in Ahmedabad, India.',
         theme_color: '#050505',
         background_color: '#050505',
         display: 'standalone',
@@ -54,22 +54,7 @@ export default defineConfig(({ command }) => ({
         // inutile de les télécharger d'avance pour chaque visiteur
         globIgnores: ['**/apple-touch-icon.png', '**/favicon*.{png,ico,svg}', '**/html2pdf-*.js', '**/sentry-*.js'],
         dontCacheBustURLsMatching: /\.(webp)$/,
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/api\.github\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'github-api-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 5 // 5 minutes
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
-        ]
+        runtimeCaching: []
       }
     }),
     // Sentry plugin (only in production with auth token)

@@ -1,4 +1,4 @@
-// Favicon : monogramme « CD » en pixel art sur une grille 16×16 (cadre fin + deux lettres de 4×8),
+// Favicon: monogramme « VD » en pixel art sur une grille 16×16 (cadre fin + deux lettres de 4×8),
 // dans les deux couleurs du site. Généré en SVG (net à toutes les tailles), puis en PNG et ICO.
 //   node scripts/generate-favicon.mjs
 import sharp from 'sharp';
@@ -9,12 +9,12 @@ const INK = '#050505';
 const PAPER = '#F2F2EE';
 
 // 1 = pixel allumé. Cadre en ligne/colonne 1 et 14, lettres en lignes 4 à 11.
-const C = ['.###', '#...', '#...', '#...', '#...', '#...', '#...', '.###'];
+const V = ['#..#', '#..#', '#..#', '#..#', '.##.', '.##.', '..#.', '..#.'];
 const D = ['###.', '#..#', '#..#', '#..#', '#..#', '#..#', '#..#', '###.'];
 const pixels = [];
 for (let i = 1; i <= 14; i++) pixels.push([i, 1], [i, 14], [1, i], [14, i]);
 const glyph = (rows, x0, y0) => rows.forEach((row, y) => [...row].forEach((c, x) => c === '#' && pixels.push([x0 + x, y0 + y])));
-glyph(C, 3, 4);
+glyph(V, 3, 4);
 glyph(D, 9, 4);
 const unique = [...new Map(pixels.map((p) => [p.join(','), p])).values()];
 

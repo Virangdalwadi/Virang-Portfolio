@@ -52,11 +52,11 @@ describe('Assistant — réponses', () => {
 
   it('propose des actions de contact concrètes', () => {
     const { reply } = respond('Is he available for hire?', 'en');
-    expect(reply.actions?.some((a) => a.href?.startsWith('mailto:christen.dijoux@gmail.com'))).toBe(true);
+    expect(reply.actions?.some((a) => a.href?.startsWith('mailto:virangdalwadi0406@gmail.com'))).toBe(true);
   });
 
   it('répond en anglais quand la langue est en', () => {
-    expect(respond('hello', 'en').reply.text).toMatch(/Christen/);
+    expect(respond('hello', 'en').reply.text).toMatch(/Hi!|Hello!/);
     expect(respond('hello', 'en').reply.text).not.toMatch(/Bonjour/);
   });
 

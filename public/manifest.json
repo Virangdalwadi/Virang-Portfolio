@@ -1,7 +1,7 @@
 {
-  "name": "Christen Dijoux",
-  "short_name": "Christen Dijoux",
-  "description": "Portfolio interactif de Christen Dijoux - Développeur Full-stack",
+  "name": "Virang Dalwadi | MERN Stack Developer",
+  "short_name": "Virang Dalwadi",
+  "description": "Portfolio of Virang Dalwadi, a MERN Stack Developer based in Ahmedabad, India.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -40,12 +40,10 @@
   ],
   "categories": [
     "portfolio",
-    "development",
-    "design"
+    "development"
   ],
-  "lang": "fr-CA",
+  "lang": "en-IN",
   "dir": "ltr",
-  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "shortcuts": [
     {
       "name": "Projets",
@@ -58,15 +56,6 @@
           "sizes": "96x96"
         }
       ]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/assets/capture.webp",
-      "sizes": "1200x630",
-      "type": "image/webp",
-      "form_factor": "wide",
-      "label": "Aperçu du portfolio"
     }
   ]
 }

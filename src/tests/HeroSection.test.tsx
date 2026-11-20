@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { HeroSection } from '../components/HeroSection';
-import { StarProvider } from '../contexts/StarContext';
 
 // Mock des hooks et composants
 vi.mock('../hooks/useLocalTime', () => ({
@@ -36,17 +35,15 @@ describe('HeroSection', () => {
   const renderHeroSection = () => {
     return render(
       <BrowserRouter>
-        <StarProvider>
-          <HeroSection />
-        </StarProvider>
+        <HeroSection />
       </BrowserRouter>
     );
   };
 
   it('devrait afficher le nom correctement', () => {
     renderHeroSection();
-    expect(screen.getByText('Christen')).toBeInTheDocument();
-    expect(screen.getByText('Dijoux')).toBeInTheDocument();
+    expect(screen.getByText('Virang')).toBeInTheDocument();
+    expect(screen.getByText('Dalwadi')).toBeInTheDocument();
   });
 
   it('devrait afficher la localisation', () => {
@@ -73,10 +70,8 @@ describe('HeroSection', () => {
     expect(screen.getAllByText(new RegExp(currentYear.toString()))).toHaveLength(1);
   });
 
-  it('devrait afficher le bouton étoile', () => {
+  it('devrait ne pas afficher de contrôle de chasse aux étoiles', () => {
     renderHeroSection();
-    // une étoile pour mobile, une pour ordinateur (une seule affichée à la fois)
-    const starButton = screen.getAllByRole('button', { name: /étoile/i })[0];
-    expect(starButton).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /étoile/i })).not.toBeInTheDocument();
   });
 });

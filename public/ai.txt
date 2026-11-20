@@ -1,6 +1,5 @@
-# ai.txt — christendijoux.com
-# Résumé structuré pour les modèles de langage : https://christendijoux.com/llms.txt
-# Structured summary for language models: https://christendijoux.com/llms.txt
+# ai.txt — virang.vercel.app
+# Structured summary for language models: https://virang.vercel.app/llms.txt
 
 User-Agent: *
 Allow: /

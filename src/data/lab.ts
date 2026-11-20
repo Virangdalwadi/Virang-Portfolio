@@ -292,31 +292,6 @@ export const labComponents: LabComponent[] = [
     stack: ['Canvas 2D', 'ScrollTrigger', 'Géodésie'],
   },
   {
-    id: 'stars',
-    name: 'Star hunt · StarGame',
-    file: 'contexts/StarContext.tsx',
-    seeOn: '/',
-    role: {
-      fr: "Des étoiles cachées dans tout le site. Les trouver toutes débloque un mini-jeu.",
-      en: 'Stars hidden all over the site. Finding them all unlocks a mini-game.',
-    },
-    why: {
-      fr: "Faire explorer le site en entier au lieu de survoler l'accueil.",
-      en: 'Get people to explore the whole site instead of skimming the home page.',
-    },
-    how: {
-      fr: 'Un contexte React garde la progression (sauvegardée localement), une notification donne un indice pour la suivante. Le jeu est chargé seulement une fois débloqué.',
-      en: 'A React context keeps progress (saved locally), a notification hints at the next one. The game only loads once unlocked.',
-    },
-    score: 2,
-    verdict: {
-      fr: 'Bonne idée pour l’engagement. Je ne dis pas où elles sont.',
-      en: "Good for engagement. I won't say where they are.",
-    },
-    cost: { fr: 'Nul tant que le jeu n’est pas lancé.', en: 'Zero until the game launches.' },
-    stack: ['React Context', 'localStorage', 'Lazy loading'],
-  },
-  {
     id: 'chatbot',
     name: 'Chatbot',
     file: 'components/Chatbot/',

@@ -5,7 +5,7 @@ import { AboutSection } from '../components/AboutSection';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    i18n: { language: 'fr' },
+    i18n: { language: 'en' },
     t: (key: string) => {
       if (key === 'about.interestsList') {
         return ['IA', 'Cloud', 'DevOps'];
@@ -28,7 +28,7 @@ vi.mock('react-i18next', () => ({
       }
 
       const translations: Record<string, string> = {
-        'about.title': 'À propos',
+        'about.title': 'About',
         'about.intro': 'Introduction',
         'about.description': 'Je suis un développeur passionné...',
         'about.skills.title': 'Compétences',
@@ -66,17 +66,17 @@ describe('AboutSection', () => {
     );
   };
 
-  it('devrait afficher le titre de la section', () => {
+  it('should render the section title', () => {
     renderAboutSection();
-    expect(screen.getByText('À propos')).toBeInTheDocument();
+    expect(screen.getByText('About')).toBeInTheDocument();
   });
 
-  it('devrait être dans le DOM', () => {
+  it('should render the section', () => {
     const { container } = renderAboutSection();
     expect(container.querySelector('section')).toBeInTheDocument();
   });
 
-  it('devrait contenir le carrousel des piliers sans marges négatives sur la section', () => {
+  it('should render the pillars carousel without negative section margins', () => {
     renderAboutSection();
     const carousel = screen.getByRole('heading', { name: 'ui.aboutAI' }).closest('article')?.parentElement;
     expect(carousel).toHaveClass('max-md:overflow-x-auto');

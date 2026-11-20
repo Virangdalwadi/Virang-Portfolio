@@ -2,10 +2,10 @@
 
 ## Reporting a vulnerability
 
-If you find a security issue on [christendijoux.com](https://christendijoux.com) or in this repository, please report it privately:
+If you find a security issue on [virang.vercel.app](https://virang.vercel.app) or in this repository, please report it privately:
 
-- **Email:** christen.dijoux@gmail.com
-- **Machine-readable contact:** [`/.well-known/security.txt`](https://christendijoux.com/.well-known/security.txt)
+- **Email:** virangdalwadi0406@gmail.com
+- **Machine-readable contact:** [`/.well-known/security.txt`](https://virang.vercel.app/.well-known/security.txt)
 
 Please include the affected URL or file, steps to reproduce, and the impact you observed.
 Do not open a public issue and do not disclose the problem publicly before it is fixed.

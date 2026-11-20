@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://christendijoux.com';
+export const SITE_URL = 'https://virang.vercel.app';
 
 /** Fil d'Ariane JSON-LD (à placer dans <Seo>). */
 export const breadcrumb = (items: { name: string; path: string }[]) => (

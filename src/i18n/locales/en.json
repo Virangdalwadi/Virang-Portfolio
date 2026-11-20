@@ -13,22 +13,22 @@
     "project": "Project"
   },
   "hero": {
-    "location": "Saguenay",
-    "region": "Quebec, Canada",
-    "role": "Digital Innovation Specialist",
-    "roleDetail": "AI • Automation • Cloud • DevOps",
-    "tagline": "Full-Stack Developer & AI Engineer"
+    "location": "Ahmedabad",
+    "region": "Gujarat, India",
+    "role": "MERN Stack Developer",
+    "roleDetail": "MongoDB • Express.js • React.js • Node.js",
+    "tagline": "MERN Stack Developer"
   },
   "about": {
     "title": "About",
-    "intro": "Full-Stack Developer specializing in automation, artificial intelligence, and digital transformation. I currently work as a Digital Innovation Specialist at Gagnon Frères, where I design technological solutions to automate operations, improve decision-making, and modernize the company's internal tools.",
-    "expertise": "My expertise covers modern web development, cloud infrastructure, business-applied artificial intelligence, and process automation. I work on application development, system integration, cloud administration, and infrastructure optimization. On a daily basis, I develop with React, Next.js, TypeScript, Python, and Node.js, while working with Microsoft Dynamics NAV, Power Platform, Azure, Cloudflare, and DigitalOcean environments.",
-    "passion": "Passionate about innovation, I am particularly interested in artificial intelligence and AI agents, Machine Learning and data analysis, business process automation, SaaS development, cloud architecture and DevOps, as well as system observability and performance. Through my company Synaptia Web, I also create custom web projects, e-commerce platforms, and AI integrations for organizations looking to accelerate their digital growth.",
+    "intro": "MERN Stack Developer building responsive, full-stack web applications with MongoDB, Express.js, React.js, and Node.js.",
+    "expertise": "I build reusable React components, develop RESTful APIs, integrate frontend applications with backend services, and work with databases and responsive UI design.",
+    "passion": "I enjoy solving problems, writing clean and maintainable code, and continuously learning while creating user-friendly web experiences.",
     "viewCV": "View Resume",
     "downloadCV": "Download Resume",
     "education": "Education",
     "skills": "Skills",
-    "interests": "Areas of Expertise",
+    "interests": "Technical Skills",
     "interestsList": [
       "Artificial Intelligence & AI Agents",
       "Machine Learning & Data Analysis",
@@ -77,14 +77,13 @@
         ]
       }
     ],
-    "impact": "Impact & Results",
+    "impact": "How I work",
     "impactList": [
-      "Internal process automation reducing manual tasks at Gagnon Frères",
-      "Production deployment of AI solutions (agents, RAG, OpenAI integrations)",
-      "Implementation of monitoring and observability tools (New Relic, alerting)",
-      "Complete redesign of CTREQ website with headless Next.js architecture (<100ms)",
-      "Creation and launch of Synaptia Web as an independent business",
-      "Power Platform and Dynamics NAV integration to digitize processes"
+      "Build responsive, user-friendly interfaces",
+      "Create reusable React components",
+      "Develop and integrate RESTful APIs",
+      "Write clean, maintainable code",
+      "Collaborate and adapt to project requirements"
     ]
   },
   "projects": {
@@ -96,12 +95,13 @@
     "viewSiteDemo": "View Demo",
     "code": "View Code",
     "technologies": "Technologies",
-    "repositories": "Repositories",
+    "repositories": "Projects",
     "backHome": "Back to Home",
     "viewDetails": "View Details",
     "personalProject": "Personal Project",
     "githubProject": "GitHub",
-    "description": "Index of projects by Christen Dijoux: case studies (headless platforms, SaaS, e-commerce) and open-source work."
+    "description": "Selected web projects by Virang Dalwadi, a MERN Stack Developer based in Ahmedabad, India.",
+    "selectedWork": "Selected projects"
   },
   "projectDetail": {
     "back": "Back",
@@ -131,7 +131,9 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Let's Stay in Touch",
-    "description": "I am always open to new opportunities and collaborations. Feel free to contact me!",
+    "description": "Get in touch by email or phone. I’m based in Ahmedabad, Gujarat, India.",
+    "formUnavailable": "Email form",
+    "formUnavailableHint": "Complete the form to open a prefilled email draft.",
     "name": "Name",
     "email": "Email",
     "message": "Message",
@@ -141,7 +143,9 @@
     "emailPlaceholder": "your@email.com",
     "messagePlaceholder": "Your message...",
     "successMessage": "Message sent successfully!",
-    "errorMessage": "Error sending message."
+    "errorMessage": "Error sending message.",
+    "openEmailDraft": "Open Email Draft",
+    "emailDraftOpened": "Your prefilled email draft is ready."
   },
   "chatbot": {
     "welcome": "👋 Hello! How can I help you today?",
@@ -158,57 +162,11 @@
     "close": "Close",
     "send": "Send"
   },
-  "game": {
-    "title": "Star game",
-    "headline": "Signal hunt",
-    "unlocked": "3 / 3 stars found — game unlocked",
-    "best": "Your best",
-    "rule1": "20 seconds to catch as many stars as you can. They vanish faster and faster.",
-    "rule2": "Inverted stars (white square) are worth 3 points.",
-    "rule3": "Chain quick clicks: the multiplier climbs up to ×4.",
-    "start": "Start game",
-    "later": "Maybe later",
-    "score": "Score",
-    "close": "Close game",
-    "star": "Star",
-    "goldenStar": "Bonus star",
-    "over": "Game over",
-    "newRecord": "New personal best!",
-    "enterNickname": "Your initials (3 letters)",
-    "submit": "Save",
-    "rank": "Ranked #{{rank}}",
-    "submitError": "Your score could not be saved.",
-    "restart": "Play again",
-    "backToSite": "Back to site",
-    "leaderboard": "Leaderboard",
-    "offline": "Online leaderboard unavailable — your best is kept on this device.",
-    "found": "Star found",
-    "hintHero": "Hint: at the very top of the home page.",
-    "hintContact": "Hint: near the contact form.",
-    "hintFooter": "Hint: at the very bottom of the page.",
-    "unlockedToast": "All stars found — a game is unlocking…",
-    "starFound": "Star found",
-    "hiddenStar": "Hidden star",
-    "play": "Play the star game",
-    "huntHint": "Stars are hidden across the site…",
-    "starsFound": "stars found"
-  },
   "footer": {
-    "description": "I help businesses automate, optimize, and modernize their operations through software development, cloud, and artificial intelligence.",
+    "description": "MERN Stack Developer building responsive and user-friendly web applications.",
     "location": "Location",
     "backToTop": "Back to top",
-    "allRightsReserved": "All rights reserved",
-    "manageCookies": "Manage cookies"
-  },
-  "cookieConsent": {
-    "acceptShort": "Accept",
-    "declineShort": "Decline",
-    "title": "🍪 Cookies & Privacy",
-    "description": "This site uses cookies to improve your experience (Google Analytics, preferences) and track technical errors (Sentry). Your data is protected in accordance with GDPR.",
-    "privacyLink": "privacy policy",
-    "accept": "Accept all cookies",
-    "decline": "Decline non-essential cookies",
-    "details": "Essential cookies: language, consent. Analytics cookies: Google Analytics (anonymized)."
+    "allRightsReserved": "All rights reserved"
   },
   "a11y": {
     "skipToContent": "Skip to main content",
@@ -491,49 +449,49 @@
   },
   "privacy": {
     "title": "Privacy policy",
-    "metaDescription": "How christendijoux.com handles your personal information: data collected, third-party services, local storage, consent and your rights (Law 25, GDPR)."
+    "metaDescription": "How Virang Dalwadi’s portfolio handles information submitted through its contact form and site preferences."
   },
   "legal": {
     "title": "Legal notice",
-    "metaDescription": "Legal notice for Christen Dijoux’s website: publisher, hosting, intellectual property, credits and governing law."
+    "metaDescription": "Legal notice for Virang Dalwadi’s developer portfolio."
   },
   "ui": {
-    "announce": "Available for new projects — Synaptia Web",
-    "announceCta": "Write",
-    "openToWork": "Open to collaborations",
+    "announce": "MERN Stack Developer — Ahmedabad, India",
+    "announceCta": "Contact",
+    "openToWork": "MERN Stack Developer",
     "localTime": "Local time",
-    "heroTitle1": "Building",
-    "heroTitle2": "intelligence",
-    "heroTitle3": "into operations",
-    "heroLead": "Full-stack developer and AI engineer. I design applications, agents and automations that save teams time — from prototype to cloud deployment.",
+    "heroTitle1": "MERN Stack",
+    "heroTitle2": "Developer",
+    "heroTitle3": "",
+    "heroLead": "Building responsive, modern, and user-friendly web applications.",
     "ctaProjects": "See projects",
     "ctaContact": "Get in touch",
     "scroll": "Scroll",
     "manifesto": [
-      "Automate",
-      "Integrate",
-      "Deploy"
+      "Responsive",
+      "Reusable",
+      "Reliable"
     ],
-    "manifestoSub": "Software, AI and cloud serving real-world operations.",
+    "manifestoSub": "Full-stack web development with a focus on usability and clean code.",
     "aboutKicker": "Profile",
-    "aboutTitle": "From code to operations",
-    "aboutAI": "Agents & applied AI",
-    "aboutAIText": "Conversational agents, RAG and LLM integrations shipped to production to automate information retrieval and decision-making.",
-    "aboutOps": "Automation & data",
-    "aboutOpsText": "Python, n8n and Power Automate pipelines that sync catalogs, suppliers and reports — fewer manual tasks, more reliability.",
-    "aboutCloud": "Cloud & observability",
-    "aboutCloudText": "Azure, DigitalOcean, Cloudflare and New Relic: deployment, monitoring and alerting for fast, well-watched systems.",
+    "aboutTitle": "Building for the web",
+    "aboutAI": "Full-stack development",
+    "aboutAIText": "Building frontend and backend features with the MERN stack.",
+    "aboutOps": "Responsive interfaces",
+    "aboutOpsText": "Creating reusable React components and user-friendly layouts.",
+    "aboutCloud": "APIs & databases",
+    "aboutCloudText": "Connecting RESTful APIs, backend services, and databases.",
     "stackKicker": "Stack",
     "pathKicker": "Path",
     "impactKicker": "Results",
     "projectsKicker": "Work",
     "contactKicker": "Contact",
-    "contactTitle": "Let's work together",
-    "footerTagline": "Full-stack & AI developer — Saguenay, Québec.",
+    "contactTitle": "Let's get in touch",
+    "footerTagline": "MERN Stack Developer — Ahmedabad, India.",
     "footerSections": "Sections",
     "footerSocial": "Social",
     "present": "Present",
-    "projectsLead": "A selection of SaaS products, headless platforms and internal tools — designed, built and shipped end to end.",
+    "projectsLead": "A selection of web projects, each with a live demo.",
     "dragHint": "Scroll",
     "cursorView": "View",
     "cursorOpen": "Open",
@@ -552,14 +510,14 @@
     "caseStudies": "Case studies",
     "totalEntries": "Entries",
     "colProject": "Project",
-    "colStack": "Language",
+    "colStack": "Technologies",
     "colYear": "Year",
     "noResults": "No results",
     "noResultsHint": "Try another term or language",
     "search": "Search",
     "searchPlaceholder": "Name, tech, keyword…",
     "clearSearch": "Clear search",
-    "filterLanguage": "Language",
+    "filterLanguage": "Technology",
     "all": "All",
     "lostSignal": "Signal lost",
     "notFoundTitle": "This page dissolved into the grid.",
@@ -583,8 +541,8 @@
     "negativeBye": "Everything is back in order."
   },
   "home": {
-    "title": "Christen Dijoux — Full-stack & AI Developer | Saguenay, QC",
-    "description": "Christen Dijoux — full-stack & AI developer in Saguenay, Québec. Web experiences, internal platforms, automation and applied AI. React, Next.js, TypeScript, GSAP, WebGL."
+    "title": "Virang Dalwadi | MERN Stack Developer",
+    "description": "Portfolio of Virang Dalwadi, a MERN Stack Developer based in Ahmedabad, India."
   },
   "lab": {
     "kicker": "Lab",

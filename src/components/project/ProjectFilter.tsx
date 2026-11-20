@@ -11,6 +11,7 @@ interface ProjectFilterProps {
 }
 
 /**
+ * 
  * Recherche + filtres par langage en puces.
  */
 export const ProjectFilter: React.FC<ProjectFilterProps> = ({

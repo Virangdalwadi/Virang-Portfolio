@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Seo } from '../components/Seo';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Footer } from '../components/Footer';
@@ -20,7 +19,7 @@ const Chatbot = lazy(() => import('../components/Chatbot/Chatbot').then((m) => (
 
 const copy = {
   fr: {
-    title: 'Lab — Christen Dijoux',
+    title: 'Lab — Virang Dalwadi',
     description: "Le laboratoire : chaque composant du site disséqué (rôle, raison d'être, technique, verdict), puis des expériences libres en WebGL et canvas.",
     back: 'Accueil',
     kicker: 'Laboratoire',
@@ -40,7 +39,7 @@ const copy = {
     status: 'Statut',
   },
   en: {
-    title: 'Lab — Christen Dijoux',
+    title: 'Lab — Virang Dalwadi',
     description: 'The lab: every component of the site taken apart (role, purpose, technique, verdict), then free experiments in WebGL and canvas.',
     back: 'Home',
     kicker: 'Laboratory',
@@ -141,8 +140,7 @@ const ComponentEntry: React.FC<{ c: LabComponent; i: number; lang: Lang }> = ({ 
 };
 
 export const LabPage: React.FC = () => {
-  const { i18n } = useTranslation();
-  const lang: Lang = i18n.language?.startsWith('fr') ? 'fr' : 'en';
+  const lang: Lang = 'en';
   const t = copy[lang];
   const { hash } = useLocation();
   useLenis();

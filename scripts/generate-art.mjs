@@ -223,8 +223,8 @@ async function ogImage() {
   <rect width="100%" height="100%" fill="${INK}"/>
   <rect x="16" y="16" width="${W - 32}" height="${H - 32}" fill="none" stroke="${PAPER}" stroke-opacity="0.25"/>
   <text x="60" y="90" font-family="Consolas, monospace" font-size="20" fill="${PAPER}" fill-opacity="0.6" letter-spacing="3">[ 01 ] · PORTFOLIO — 2026</text>
-  <text x="56" y="330" font-family="Arial Narrow, Arial, sans-serif" font-stretch="condensed" font-size="150" fill="${PAPER}" letter-spacing="-4">CHRISTEN</text>
-  <text x="56" y="460" font-family="Arial Narrow, Arial, sans-serif" font-stretch="condensed" font-size="150" fill="${PAPER}" letter-spacing="-4">DIJOUX</text>
+  <text x="56" y="330" font-family="Arial Narrow, Arial, sans-serif" font-stretch="condensed" font-size="150" fill="${PAPER}" letter-spacing="-4">VIRANG</text>
+  <text x="56" y="460" font-family="Arial Narrow, Arial, sans-serif" font-stretch="condensed" font-size="150" fill="${PAPER}" letter-spacing="-4">DALWADI</text>
   <text x="60" y="560" font-family="Consolas, monospace" font-size="20" fill="${PAPER}" letter-spacing="2">FULL-STACK · IA · AUTOMATISATION · CLOUD</text></svg>`;
   await sharp(Buffer.from(svg))
     .composite([{ input: globe, left: W - 560 - 20, top: 35, blend: 'screen' }])

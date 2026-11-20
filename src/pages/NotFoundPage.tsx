@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Seo } from '../components/Seo';
 import { ArrowLeft } from 'lucide-react';
 import { SplitText } from '../components/ui/Kinetic';
+import { profile } from '../data/portfolio';
 
 const DitherHero = lazy(() => import('../components/webgl/DitherHero'));
 
@@ -12,7 +13,7 @@ export function NotFoundPage() {
 
   return (
     <main className="grain relative flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden bg-ink text-paper">
-      <Seo noindex path="/404" title="404 | Christen Dijoux" description="Page not found." />
+      <Seo noindex path="/404" title={`404 | ${profile.name}`} description="Page not found." />
       <Suspense fallback={null}>
         <DitherHero centered />
       </Suspense>
@@ -41,7 +42,7 @@ export function NotFoundPage() {
           </div>
         </div>
 
-        <p className="label text-center">© {new Date().getFullYear()} Christen Dijoux</p>
+        <p className="label text-center">© {new Date().getFullYear()} {profile.name}</p>
       </div>
     </main>
   );

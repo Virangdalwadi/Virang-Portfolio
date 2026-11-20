@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Seo } from '../components/Seo';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -6,7 +6,6 @@ import { HeroSection } from '../components/HeroSection';
 import { ManifestoBand } from '../components/ManifestoBand';
 import { AboutSection } from '../components/AboutSection';
 import { ProjectsSection } from '../components/ProjectsSection';
-import { LabTeaser } from '../components/LabTeaser';
 import { ContactSection } from '../components/ContactSection';
 
 import { Footer } from '../components/Footer';
@@ -15,16 +14,13 @@ import { scrollToTarget } from '../lib/motion';
 
 // Sections sous le hero, montées une à une pendant les temps libres du navigateur :
 // le premier rendu ne construit que le hero (au lieu d'une longue tâche qui bloque le téléphone).
-const BELOW_FOLD = [ManifestoBand, AboutSection, ProjectsSection, LabTeaser, ContactSection, Footer];
+const BELOW_FOLD = [ManifestoBand, AboutSection, ProjectsSection, ContactSection, Footer];
 const idle = (fn: () => void) =>
   typeof window.requestIdleCallback === 'function'
     ? window.requestIdleCallback(fn, { timeout: 250 })
     : window.setTimeout(fn, 16);
 const cancelIdle = (id: number) =>
   typeof window.cancelIdleCallback === 'function' ? window.cancelIdleCallback(id) : window.clearTimeout(id);
-
-// Assistant chargé après le contenu principal
-const Chatbot = lazy(() => import('../components/Chatbot/Chatbot').then((m) => ({ default: m.Chatbot })));
 
 export const HomePage = () => {
   const { t } = useTranslation();
@@ -62,16 +58,13 @@ export const HomePage = () => {
       <Seo
         path="/"
         type="profile"
-        title={t('home.title', { defaultValue: 'Christen Dijoux — Développeur full-stack & IA | Saguenay' })}
-        description={t('home.description', { defaultValue: 'Portfolio de Christen Dijoux - Développeur Full-stack spécialisé en React, Node.js, TypeScript et WordPress Headless.' })}
+        title={t('home.title', { defaultValue: 'Virang Dalwadi | MERN Stack Developer' })}
+        description={t('home.description', { defaultValue: 'Portfolio of Virang Dalwadi, a MERN Stack Developer based in Ahmedabad, India.' })}
       />
       <HeroSection />
       {BELOW_FOLD.slice(0, mounted).map((Section, i) => (
         <Section key={i} />
       ))}
-      <Suspense fallback={null}>
-        <Chatbot botName="Assistant" position="bottom-right" />
-      </Suspense>
     </main>
   );
 };

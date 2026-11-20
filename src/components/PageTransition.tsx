@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import { isImageTransitionPending } from '../lib/projectTransition';
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -15,11 +14,9 @@ const ease = [0.76, 0, 0.24, 1] as const;
  */
 export const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const location = useLocation();
-  // Pas de rideau sur la toute première page affichée (le préchargeur s'en charge),
-  // ni après la transition « image partagée » vers une étude de cas (l'image couvre déjà l'écran)
+  // The preloader handles the first page shown in a session.
   const [initialKey] = React.useState(location.key);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const skipCurtain = React.useMemo(() => location.key === initialKey || isImageTransitionPending(), [location.key]);
+  const skipCurtain = location.key === initialKey;
 
   useEffect(() => {
     // Force immediate scroll to top

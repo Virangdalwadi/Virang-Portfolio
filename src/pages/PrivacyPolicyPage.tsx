@@ -7,8 +7,8 @@ export default function PrivacyPolicyPage() {
   const { t } = useTranslation();
   return (
     <>
-      <Seo path="/privacy-policy" title={`${t('privacy.title')} | Christen Dijoux`} description={t('privacy.metaDescription')} />
-      <LegalLayout doc={privacy} other={{ to: '/legal-notice', label: { fr: 'Mentions légales', en: 'Legal notice' } }} />
+      <Seo path="/privacy-policy" title={`${t('privacy.title')} | Virang Dalwadi`} description={t('privacy.metaDescription')} />
+      <LegalLayout doc={privacy} other={{ to: '/legal-notice', label: 'Legal notice' }} />
     </>
   );
 }

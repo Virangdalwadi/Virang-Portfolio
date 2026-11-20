@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
 import { Footer } from './Footer';
 import { SplitText } from './ui/Kinetic';
 import { useLenis } from '../hooks/useLenis';
 import { scrollToTarget } from '../lib/motion';
 import { tr, type Block, type Lang, type LegalDoc, type T } from '../data/legal';
+import { emailComposeUrl } from '../data/portfolio';
 
 const linkClass = 'text-paper underline decoration-paper/30 underline-offset-4 transition-colors hover:decoration-paper';
 
@@ -17,7 +17,7 @@ const Rich: React.FC<{ text: string }> = ({ text }) => {
     <>
       {parts.map((part, i) => {
         if (!part) return null;
-        if (/^\S+@\S+\.\w+$/.test(part)) return <a key={i} href={`mailto:${part}`} className={linkClass}>{part}</a>;
+        if (/^\S+@\S+\.\w+$/.test(part)) return <a key={i} href={emailComposeUrl(part)} className={linkClass}>{part}</a>;
         if (/^https?:\/\//.test(part)) return <a key={i} href={part} target="_blank" rel="noopener noreferrer" className={linkClass}>{part.replace(/^https?:\/\//, '')}</a>;
         if (/^[a-z0-9-]+\.(gouv\.qc\.ca|fr|com)$/i.test(part)) return <a key={i} href={`https://${part}`} target="_blank" rel="noopener noreferrer" className={linkClass}>{part}</a>;
         if (/^\/\.?[a-z]/i.test(part)) {
@@ -83,8 +83,7 @@ const BlockView: React.FC<{ block: Block; lang: Lang }> = ({ block, lang }) => {
  * (collant sur grand écran) et sections numérotées.
  */
 export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: T } }> = ({ doc, other }) => {
-  const { i18n } = useTranslation();
-  const lang: Lang = i18n.language?.startsWith('fr') ? 'fr' : 'en';
+  const lang: Lang = 'en';
   const t = (x: T) => tr(lang, x);
   useLenis();
 
@@ -92,7 +91,7 @@ export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: 
     window.scrollTo(0, 0);
   }, []);
 
-  const updated = new Date(`${doc.updated}T12:00:00`).toLocaleDateString(lang === 'fr' ? 'fr-CA' : 'en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+  const updated = new Date(`${doc.updated}T12:00:00`).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
   const pad = (n: number) => String(n).padStart(2, '0');
 
   return (
@@ -100,7 +99,7 @@ export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: 
       <header className="px-4 pb-12 pt-8 sm:px-6 md:px-10 md:pb-16 md:pt-12">
         <Link to="/" className="label group -my-1 flex w-fit items-center gap-2 py-1 hover:text-paper">
           <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" />
-          {lang === 'fr' ? 'Accueil' : 'Home'}
+          Home
         </Link>
         <div className="mt-10 md:mt-14">
           <p className="label flex items-center gap-3">
@@ -109,7 +108,7 @@ export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: 
           </p>
           <SplitText as="h1" trigger="intro" text={t(doc.title)} className="display mt-6 block text-[clamp(3.4rem,11vw,11rem)]" />
           <p className="label mt-6">
-            {lang === 'fr' ? 'Dernière mise à jour' : 'Last updated'} · <time dateTime={doc.updated} className="text-paper">{updated}</time>
+            Last updated · <time dateTime={doc.updated} className="text-paper">{updated}</time>
           </p>
         </div>
       </header>
@@ -128,8 +127,8 @@ export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: 
                 ))}
               </ul>
             </div>
-            <nav aria-label={lang === 'fr' ? 'Sommaire' : 'Contents'} className="hidden lg:block">
-              <p className="label mb-3">{lang === 'fr' ? 'Sommaire' : 'Contents'}</p>
+            <nav aria-label="Contents" className="hidden lg:block">
+              <p className="label mb-3">Contents</p>
               <ol className="border-t border-line">
                 {doc.sections.map((s, i) => (
                   <li key={s.id}>
@@ -172,7 +171,7 @@ export const LegalLayout: React.FC<{ doc: LegalDoc; other: { to: string; label: 
           ))}
 
           <p className="border-t border-line pt-6 text-sm text-paper/60">
-            {lang === 'fr' ? 'Voir aussi' : 'See also'} : <Link to={other.to} className={linkClass}>{t(other.label)}</Link>
+            See also: <Link to={other.to} className={linkClass}>{t(other.label)}</Link>
           </p>
         </div>
       </div>
