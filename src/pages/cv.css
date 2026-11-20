@@ -127,6 +127,54 @@
   display: none;
 }
 
+@media screen and (max-width: 640px) {
+  .resume-preview .resume-sheet {
+    padding: 24px 16px;
+  }
+
+  .resume-sheet .rs-name {
+    font-size: 18pt;
+  }
+
+  .resume-sheet .rs-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1mm 2mm;
+    text-align: center;
+  }
+
+  .resume-sheet .rs-contact > span {
+    margin-right: 0;
+    white-space: normal;
+  }
+
+  .resume-sheet .rs-contact > span:nth-child(3) {
+    display: none;
+  }
+
+  .resume-sheet .rs-contact > span:nth-child(4) a {
+    word-break: break-all;
+  }
+
+  .resume-sheet a,
+  .resume-sheet .rs-text,
+  .resume-sheet .rs-list li,
+  .resume-sheet .rs-split > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .resume-sheet .rs-split {
+    flex-wrap: wrap;
+    gap: 0 12px;
+  }
+
+  .resume-sheet .rs-split > :last-child {
+    margin-left: auto;
+  }
+}
+
 @media print {
   body.resume-print-mode {
     background: #fff !important;

@@ -43,7 +43,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="grain relative flex min-h-[calc(100svh-3.5rem)] w-full flex-col overflow-hidden lg:h-[calc(100svh-4rem)] lg:min-h-[620px]"
+      className="hero-section grain relative flex min-h-[calc(100svh-3.5rem)] w-full flex-col overflow-hidden lg:h-[calc(100svh-4rem)] lg:min-h-[620px]"
     >
       <Suspense fallback={null}>
         <DitherHero intro={introDone} />

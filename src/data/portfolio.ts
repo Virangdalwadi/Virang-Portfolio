@@ -1,9 +1,9 @@
 export type LocalizedText = { en: string; fr: string };
 
-export const emailComposeUrl = (email: string, subject = '', body = '') => {
-  const params = new URLSearchParams({ view: 'cm', fs: '1', to: email });
-  if (subject) params.set('su', subject);
-  if (body) params.set('body', body);
+export const emailComposeUrl = (email: string, subject = "", body = "") => {
+  const params = new URLSearchParams({ view: "cm", fs: "1", to: email });
+  if (subject) params.set("su", subject);
+  if (body) params.set("body", body);
   return `https://mail.google.com/mail/?${params.toString()}`;
 };
 
@@ -73,8 +73,7 @@ export const experience = [
     title: { en: "MERN Stack Intern", fr: "Stagiaire développeur MERN" },
     company: "Brainerhub Solution",
     location: { en: "Thaltej, Ahmedabad", fr: "Thaltej, Ahmedabad" },
-    period: "May 2026 – October 2026",
-    periodFr: "Mai 2026 – octobre 2026",
+    period: "May 2026 – Present",
     description: {
       en: "Developed reusable React.js components, improved responsive interfaces, built REST APIs with Node.js and Express.js, worked with MongoDB and Mongoose, integrated frontend applications with backend APIs, optimized frontend performance, deployed applications using Vercel and Render, and collaborated with team members on project requirements.",
     },

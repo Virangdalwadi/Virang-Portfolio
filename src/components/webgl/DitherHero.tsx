@@ -16,6 +16,8 @@ const fragment = /* glsl */ `
   precision highp float;
   uniform float uTime;
   uniform vec2 uRes;
+  uniform float uZoom;
+  uniform float uThick;
   uniform vec2 uMouse;
   uniform float uHover;
   uniform float uScroll;
@@ -45,9 +47,9 @@ float r=mix(0.08,0.62,uIntro)*(1.0-uScroll*0.3)*(1.0+uHover*0.06);
   vec3 a=p;     a.yz*=rot(uTime*0.5);
   vec3 b=p.yxz; b.xy*=rot(uTime*0.4+1.0);
   vec3 c=p.xzy; c.yz*=rot(uTime*0.33+2.0);
-  float d=sdTorusY(a,r,r*0.055);
-  d=min(d,sdTorusY(b,r*0.82,r*0.055));
-  d=min(d,sdTorusY(c,r*0.64,r*0.055));
+  float d=sdTorusY(a,r,r*0.055*uThick);
+  d=min(d,sdTorusY(b,r*0.82,r*0.055*uThick));
+  d=min(d,sdTorusY(c,r*0.64,r*0.055*uThick));
   return min(d,length(p)-r*0.24);
 }
 
@@ -66,7 +68,7 @@ float r=mix(0.08,0.62,uIntro)*(1.0-uScroll*0.3)*(1.0+uHover*0.06);
     px=max(px,1.0);
     vec2 cell=floor(frag/px);
     vec2 c=(cell+0.5)*px;
-    vec2 uv=(c-0.5*uRes)/min(uRes.x,uRes.y);
+    vec2 uv=(c-0.5*uRes)/min(uRes.x,uRes.y)*uZoom;
 
     // placement : à droite sur grand écran ; en portrait, centrée dans le tiers haut
     // (au-dessus du titre) et un peu plus petite. Remonte au défilement.
@@ -104,7 +106,7 @@ if(disc>0.0){
   }
 }
 
-    float lum;
+    float lit;
     if(hit>0.5){
       vec3 p=ro+rd*t;
       vec3 n=normalAt(p);
@@ -112,20 +114,21 @@ if(disc>0.0){
       float diff=max(dot(n,l),0.0);
       float rim=pow(1.0-max(dot(n,-rd),0.0),3.0);
       float bands=0.08*sin(dot(p,vec3(9.0,7.0,5.0))+uTime*0.6);
-      lum=0.03+diff*0.8+rim*0.3+bands;
+      lit=0.03+diff*0.8+rim*0.3+bands;
     } else {
       // halo + champ d'étoiles tramé
       float r=length(uv);
-      lum=max(0.0,0.14*exp(-r*2.2)-0.06);
+      lit=max(0.0,0.14*exp(-r*2.2)-0.06);
       // mobile (sphère cadrée) : halo réduit, sinon sa trame forme une grille sous le texte
-      if(uFocus.z>0.0) lum*=0.35;
+      if(uFocus.z>0.0) lit*=0.35;
       float star=step(0.997,fract(sin(dot(cell,vec2(12.9898,78.233)))*43758.5453));
-      lum+=star*0.6*(0.5+0.5*sin(uTime*2.0+cell.x));
+      lit+=star*0.6*(0.5+0.5*sin(uTime*2.0+cell.x))*(uZoom<1.0?0.3:1.0);
     }
-    lum*=(1.0-uScroll*0.55)*(portrait&&uCenter<0.5?0.85:1.0);
+    lit*=(1.0-uScroll*0.55)*(portrait&&uCenter<0.5?0.85:1.0);
+    if(uZoom<1.0&&hit>0.5) lit=clamp(pow(max(lit,0.0),0.75)+0.08,0.0,1.0);
 
     float threshold=bayer8(cell);
-    float on=step(threshold,clamp(lum,0.0,1.0)*0.98);
+    float on=step(threshold,clamp(lit,0.0,1.0)*0.98);
     gl_FragColor=vec4(mix(uInk,uPaper,on),1.0);
   }
 `;
@@ -133,6 +136,8 @@ if(disc>0.0){
 type Uniforms = {
   uTime: number;
   uRes: [number, number];
+  uZoom: number;
+  uThick: number;
   uMouse: [number, number];
   uHover: number;
   uScroll: number;
@@ -204,12 +209,9 @@ const DitherHero: React.FC<{
 
     /** Démarre le rendu une fois le programme prêt ; renvoie la fonction de nettoyage. */
     const run = (prog: WebGLProgram): (() => void) => {
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
-      // Écran tactile : pas d'effet loupe, donc chaque point de trame = 1 pixel calculé,
-      // agrandi en CSS (≈ 25 à 50× moins de calcul, rendu identique)
-      const lowRes = isMobile || window.matchMedia("(hover: none)").matches;
-      const CELL = 4;
-      const dpr = lowRes ? 1 / CELL : 1;
+      const mobileQuery = window.matchMedia("(max-width: 768px)");
+      const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+      let isMobile = mobileQuery.matches;
       canvas.style.display = "block";
       canvas.style.width = "100%";
       canvas.style.height = "100%";
@@ -233,6 +235,8 @@ const DitherHero: React.FC<{
       const L = {
         uTime: u("uTime"),
         uRes: u("uRes"),
+        uZoom: u("uZoom"),
+        uThick: u("uThick"),
         uMouse: u("uMouse"),
         uHover: u("uHover"),
         uScroll: u("uScroll"),
@@ -247,10 +251,12 @@ const DitherHero: React.FC<{
       const U: Uniforms = {
         uTime: 0,
         uRes: [1, 1],
+        uZoom: isMobile ? 0.7 : 1,
+        uThick: isMobile ? 1.4 : 1,
         uMouse: [0.2, 0.1],
         uHover: 0,
         uScroll: 0,
-        uPixel: lowRes ? 1 : 4 * dpr,
+        uPixel: 1,
         uIntro: 0,
         uCenter: centered ? 1 : 0,
         uFocus: [0, 0, 0],
@@ -259,6 +265,8 @@ const DitherHero: React.FC<{
       const draw = () => {
         gl.uniform1f(L.uTime, U.uTime);
         gl.uniform2fv(L.uRes, U.uRes);
+        gl.uniform1f(L.uZoom, U.uZoom);
+        gl.uniform1f(L.uThick, U.uThick);
         gl.uniform2fv(L.uMouse, U.uMouse);
         gl.uniform1f(L.uHover, U.uHover);
         gl.uniform1f(L.uScroll, U.uScroll);
@@ -270,12 +278,15 @@ const DitherHero: React.FC<{
       };
       let wrapH = 1;
       const resize = () => {
-        const { width, height } = wrap.getBoundingClientRect();
+        const width = wrap.clientWidth;
+        const height = wrap.clientHeight;
         wrapH = wrap.offsetHeight || 1;
-        canvas.width = Math.max(1, Math.round(width * dpr));
-        canvas.height = Math.max(1, Math.round(height * dpr));
+        const cellSize = isMobile ? 3 : 2;
+        canvas.width = Math.max(1, Math.floor(width / cellSize));
+        canvas.height = Math.max(1, Math.floor(height / cellSize));
         gl.viewport(0, 0, canvas.width, canvas.height);
         U.uRes = [canvas.width, canvas.height];
+        U.uPixel = isMobile ? 1 : 2;
         // Portrait : la sphère occupe l'espace libre au-dessus du titre ([data-sphere-bottom])
         U.uFocus = [0, 0, 0];
         const marker = wrap.parentElement?.querySelector<HTMLElement>(
@@ -302,10 +313,20 @@ const DitherHero: React.FC<{
             U.uFocus = [0, 10, 1];
           }
         }
+        if (prefersReducedMotion) draw();
+      };
+      const onMobileChange = () => {
+        isMobile = mobileQuery.matches;
+        U.uZoom = isMobile ? 0.7 : 1;
+        U.uThick = isMobile ? 1.4 : 1;
+        resize();
       };
       resize();
       const ro = new ResizeObserver(resize);
       ro.observe(wrap);
+      mobileQuery.addEventListener("change", onMobileChange);
+      window.addEventListener("resize", resize, { passive: true });
+      window.addEventListener("orientationchange", resize, { passive: true });
       // Le titre se met en place après le chargement des polices et l'intro : on remesure
       void document.fonts?.ready.then(resize);
       let remeasure = 0;
@@ -325,8 +346,10 @@ const DitherHero: React.FC<{
       const onLeave = () => {
         hoverTarget = 0;
       };
-      window.addEventListener("pointermove", onMove, { passive: true });
-      document.addEventListener("pointerleave", onLeave);
+      if (!coarsePointer) {
+        window.addEventListener("pointermove", onMove, { passive: true });
+        document.addEventListener("pointerleave", onLeave);
+      }
 
       let visible = true;
       const io = new IntersectionObserver(
@@ -341,8 +364,13 @@ const DitherHero: React.FC<{
       const cleanup = () => {
         offIntro();
         window.clearTimeout(remeasure);
-        window.removeEventListener("pointermove", onMove);
-        document.removeEventListener("pointerleave", onLeave);
+        if (!coarsePointer) {
+          window.removeEventListener("pointermove", onMove);
+          document.removeEventListener("pointerleave", onLeave);
+        }
+        window.removeEventListener("resize", resize);
+        window.removeEventListener("orientationchange", resize);
+        mobileQuery.removeEventListener("change", onMobileChange);
         ro.disconnect();
         io.disconnect();
         gl.deleteBuffer(buf);

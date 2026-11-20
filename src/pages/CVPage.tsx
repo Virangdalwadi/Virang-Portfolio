@@ -118,7 +118,7 @@ export default function CVPage() {
   }, []);
 
   return (
-    <main className="resume-page min-h-screen bg-ink px-4 pb-16 pt-10 text-paper sm:px-6 md:px-10">
+    <main className="resume-page min-h-screen overflow-x-hidden bg-ink px-3 pb-16 pt-10 text-paper sm:px-6 md:px-10">
       <Seo
         path="/cv"
         type="profile"
@@ -133,7 +133,7 @@ export default function CVPage() {
         document.body,
       )}
 
-      <div className="mx-auto max-w-[210mm]">
+      <div className="resume-preview mx-auto w-full max-w-[210mm]">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <Link to="/" className="btn-ghost" data-magnetic>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />

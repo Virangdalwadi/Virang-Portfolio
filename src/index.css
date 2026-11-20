@@ -42,6 +42,12 @@ body::after {
   :root { --frame: 4px; }
 }
 
+@media (max-width: 767px) {
+  .hero-section::after {
+    opacity: 0.025;
+  }
+}
+
 #root {
   min-height: 100vh;
   background-color: var(--ink);
