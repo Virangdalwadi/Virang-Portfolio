@@ -42,7 +42,8 @@ export const getKnowledge = (lang: Lang): Knowledge => {
     experiences: experience.map((item) => ({
       title: item.title[lang],
       company: item.company,
-      period: lang === "fr" ? item.periodFr : item.period,
+      period:
+        (lang === "fr" ? (item.periodFr ?? item.period) : item.period) ?? "",
       description: item.description[lang] ?? item.description.en ?? "",
     })),
     education: education.map((item) => ({
