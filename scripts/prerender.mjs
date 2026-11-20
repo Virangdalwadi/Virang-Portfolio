@@ -20,8 +20,10 @@ const chrome = [
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   '/usr/bin/google-chrome',
 ].find((p) => p && existsSync(p));
-if (!chrome) throw new Error('Pré-rendu impossible : Chrome introuvable (définir CHROME_PATH)');
-
+if (!chrome) {
+  console.warn('Chrome not found, skipping prerender (deploying as plain SPA)');
+  process.exit(0);
+}
 const routes = ['/', '/projects', '/cv', '/privacy-policy', '/legal-notice'];
 
 const template = readFileSync(path.join(DIST, 'index.html'), 'utf8');
